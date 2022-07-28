@@ -19,3 +19,13 @@ function good(id,type,user)
 		}
 	})
 }
+
+
+// 使用該logout-function可以讓頁面維持在當前面頁面不轉換  做到登出登入
+function logout() {
+	// 通知後台api執行logout
+	$.get("./api/logout.php",()=>{
+		location.reload()
+	})
+	
+}

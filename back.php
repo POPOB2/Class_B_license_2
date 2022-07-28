@@ -1,5 +1,11 @@
 ﻿<!-- 載入base檔 -->
-<?php  include_once "base.php" ?>
+<?php  include_once "base.php";
+// 限定管理者進入 如果不是不准進入
+if(!isset($_SESSION['user']) or $_SESSION['user']!=='admin'){ // 1.檢查SESSION 2.檢查該帳號必須為管理者, 兩者只要其一為否 導到首頁
+	to("index.php");
+	exit(); // 後續不執行, 避免登入錯誤產生後續跑程式的系統效能消耗
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
