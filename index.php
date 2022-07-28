@@ -20,7 +20,7 @@
 			<!-- 把上面日期部分刪掉,改寫成下述, 用php的date帶入 -->
         <?=date("m 月 d 號 l ");?> | 今日瀏覽: 1 | 累積瀏覽: 36
 		<a href="index.php" style="float:right">回首頁</a><!-- 新增一個回首頁標籤, 使用float浮於右上角, 此時下面的QRCODE會被推出去,可以不解決 也可以放大後面的背景區塊讓QRCODE吃進背景 -->
-		<!-- F12 id為mm的div min-height改為固定高度530px class為hal id為left的改為530px 以上從CSS更改 -->
+		<!-- F12 id為mm的div min-height改為固定高度530px class為hal id為lef和main的改為530px 以上從CSS更改 -->
 		</div>
         <div id="title2">
 			<!-- 上述改寫成下述 -->
