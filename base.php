@@ -152,7 +152,21 @@ function to($url){
 }
 
 $Total=new DB('total');
-
+// ---------------------------------------------------------------------------------------
+// 拜訪者如果沒有該'total' 撈出 total人數 找出今天的資料 並網total值+1
+if(!isset($_SESSION['total'])){
+    $chkDate=$Total->math('count','id',['date'=>date("Y-m-d")]);
+    if($chkDate>=1){ // 確認該變數存在(即為非0) 代表登入過
+        $total=$total->find(['date'=>date("Y-m-d")]); // find撈出資料表的date欄 內容為date("今天")
+        // dd($total); // 確認有撈出資料
+        $total['total']++; // 把'total'值+1
+        $Total->save($total); // 將物件$Total 存回$total表
+        $_SESSION['total']=1; // 當以上執行完 會將$_SESSION的'total'欄設為1
+    }else{
+        $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
+        $_SESSION['total']=1;
+    }
+}
 
 
 
