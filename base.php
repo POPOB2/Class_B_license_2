@@ -152,6 +152,9 @@ function to($url){
 }
 
 $Total=new DB('total');
+// 新增資料庫物件-使用者資訊
+$User=new DB('user');
+
 // ---------------------------------------------------------------------------------------
 // 拜訪者如果沒有該SESSION的'total' 撈出 total人數 找出今天的資料 並往total值+1
 if(!isset($_SESSION['total'])){
