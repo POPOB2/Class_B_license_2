@@ -153,9 +153,9 @@ function to($url){
 
 $Total=new DB('total');
 // ---------------------------------------------------------------------------------------
-// 拜訪者如果沒有該'total' 撈出 total人數 找出今天的資料 並網total值+1
+// 拜訪者如果沒有該SESSION的'total' 撈出 total人數 找出今天的資料 並往total值+1
 if(!isset($_SESSION['total'])){
-    $chkDate=$Total->math('count','id',['date'=>date("Y-m-d")]);
+    $chkDate=$Total->math('count','id',['date'=>date("Y-m-d")]); // 使用math函式計算(計算方法用count,計算該id的日期為=>今天的日期)
     if($chkDate>=1){ // 確認該變數存在(即為非0) 代表登入過
         $total=$total->find(['date'=>date("Y-m-d")]); // find撈出資料表的date欄 內容為date("今天")
         // dd($total); // 確認有撈出資料
@@ -163,8 +163,8 @@ if(!isset($_SESSION['total'])){
         $Total->save($total); // 將物件$Total 存回$total表
         $_SESSION['total']=1; // 當以上執行完 會將$_SESSION的'total'欄設為1
     }else{
-        $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
-        $_SESSION['total']=1;
+        $Total->save(['date'=>date("Y-m-d"),'total'=>1]); // 若無 就把$chkDate計算到的日期進行儲存 並讓該日期的total不為0
+        $_SESSION['total']=1; // 並往該日期+1
     }
 }
 

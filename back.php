@@ -33,9 +33,12 @@
         </div>
         <div id="mm">
         	<div class="hal" id="lef">
+				<!-- <a class="blo" href="?do=pop">人氣文章</a> -->
+				<!-- 把上述人氣文章改成下述?do=user 內容:帳號管理 -->
+				<a class="blo" href="?do=user">帳號管理</a>
+				
             	                	    	<a class="blo" href="?do=po">分類網誌</a>
-               	                     	    <a class="blo" href="?do=news">最新文章</a>
-               	                     	    <a class="blo" href="?do=pop">人氣文章</a>
+               	                     	    <a class="blo" href="?do=news">最新文章管理</a> <!-- 內容加"管理"二字 -->
                	                     	    <a class="blo" href="?do=know">講座訊息</a>
                	                     	    <a class="blo" href="?do=que">問卷調查</a>
                	                </div>
@@ -67,16 +70,16 @@
 
 
 								$do=$_GET['do']??'main';// 若有做什麼  若無做什麼
-								$file='./front/'.$do.".php";
+								$file='./back/'.$do.".php";
 								// 若該$file存在 就把該$file載入
 								if(file_exists($file)){
 									include $file;
 								}else{
-									include "./front/main.php"; // 若不存在 載入另一個寫好的頁面
+									include "./back/main.php"; // 若不存在 載入另一個寫好的頁面
 								}
-								// 這裡做完這塊之後將index.php複製一份改為back.php 並在back和front資料夾產生對應的main.php
+								// 這裡將原本設為front的路徑改為back 
 							?>
-                		                        </div>
+                		</div>
                 </div>
             </div>
         </div>
