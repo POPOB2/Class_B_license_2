@@ -8,6 +8,9 @@ if(!empty($user)){
 }else{
     echo "查無此資料";
 }
+// 可以用三元運算子再縮成
+// echo (!empty($user))?"您的密碼為:".$user['pw']:"查無此資料";
+
 
 
 ?>
