@@ -15,7 +15,15 @@
         <tr>
             <td>
                 <button onclick="login()">登入</button>
-                <button onclick="reset()">清除</button>
+
+                <!-- 這裡會吃不到清除的設定 原因見7/29/11:47 ~ 11:49 -->
+                <!-- <button onclick="reset()">清除</button>  -->
+
+                <!-- 會清除掉該頁面所有input 使用上較為危險 -->
+                <!-- <button onclick="$('input').val('')">清除</button>  -->
+                
+                <!-- 改為使用:指定清除上方id為acc和pw的值 -->
+                <button onclick="$('#acc,#pw').val('')">清除</button>
             </td>
             <!-- class="r" == 工具:文字置右  "l"==置左 -->
             <td class="r">
