@@ -16,7 +16,7 @@
     $pages=ceil($all/$div); // 頁數=計算(總比數  除  一頁幾筆)
     $now=$_GET['p']??1; // 辨識自己在哪一頁 預設從1開始
     $start=($now-1)*$div; // 開始頁=(現在頁數-1)乘3
-    $rows=$News->all("limit $start, $div"); 
+    $rows=$News->all(" limit $start ,$div"); 
     // rows(陣列)=在該DB資料表使用all-function(條件) 找出全部資料, 再由下方foreach把資料吐出來
     // rows=顯示哪些資料, limit=指定顯示的欄位數 第一個值=從哪開始 第二個值=顯示幾筆
     // $rows=$News從索引值開始抓(一頁3筆) // 15:02 
@@ -26,11 +26,12 @@
     ?>
     <tr>
         
-        <td> <?=$key+1;?> </td> 
+        <!-- <td> < ?=$key+1;?> </td>  調整為下述-->
+        <td> <?=$key-2+$key;?> </td>
         <td> <?=$row['title'];?> </td>
         <td> <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?> > </td>
         <td> <input type="checkbox" name="del[]" value="<?=$row['id'];?>"> </td>
-        
+        <input type="hidden" name="id[]" value="<?=$row['id'];?>">
     </tr>
     <?php
     }
