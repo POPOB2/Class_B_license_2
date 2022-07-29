@@ -52,13 +52,13 @@
 					<!-- 把<a href="?do=login">會員登入</a>用SESSION增加判斷式區分 登入登出 -->
 					<?php
 					if(isset($_SESSION['user'])){ // 有登入資料時顯示
-						if($_SESSION['user']==='admin'){
-						?>
-						歡迎<?=$_SESSION['user'];?>
-						<button onclick="location.href='back.php'">管理</button>
-						<button onclick="logout()">登出</button>
-						<?php
-						}else{
+							if($_SESSION['user']==='admin'){
+							?>
+							歡迎<?=$_SESSION['user'];?>
+							<button onclick="location.href='back.php'">管理</button>
+							<button onclick="logout()">登出</button>
+							<?php
+							}else{
 						?>
 						歡迎<?=$_SESSION['user'];?>
 						<button onclick="logout()">登出</button>
