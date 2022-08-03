@@ -56,10 +56,29 @@ if(!isset($_SESSION['user']) or $_SESSION['user']!=='admin'){ // 1.檢查SESSION
 					</marquee>
             		<!-- 右手邊登入按鈕, 占了18% 所以得知另一塊能用的可以到82% -->
                 	<span style="width:18%; display:inline-block;">
-                    	                    	<a href="?do=login">會員登入</a>
+					<?php
+					if(isset($_SESSION['user'])){ // 有登入資料時顯示
+							if($_SESSION['user']==='admin'){
+							?>
+							歡迎，<?=$_SESSION['user'];?>
+							<button onclick="location.href='back.php'">管理</button>
+							|<button onclick="logout()">登出</button>
+							<?php
+							}else{
+						?>
+						歡迎，<?=$_SESSION['user'];?>
+						<button onclick="logout()">登出</button>
+						<?php
+						}
+						}else{
+						?>
+						<a href="?do=login">會員登入</a>
+						<?php
+						}
+						?>
                     	                    </span>
 						<!-- 挖空的class原本用於js.js內的lo-function 但難用 不要用 -->
-                    	<div class="">
+                    	<!-- <div class=""> -->
 						<!-- 直接把上述空class改寫成下述+content -->
                     	<div class="content">
 							<?php

@@ -1,7 +1,6 @@
 <?php
 session_start();
 date_default_timezone_set("Asia/Taipei");
-
 // 名DB==內容與資料庫有關
 class DB{
     // protected==用於不被看到該內容
@@ -59,7 +58,7 @@ class DB{
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
    }
    function find($arg){
-    $sql="select * from $this->table where";
+    $sql="select * from $this->table where ";
     
         if(is_array($arg)){
             foreach($arg as $key => $val){
@@ -73,9 +72,10 @@ class DB{
         }
    
 
-    //echo $sql;
+    // echo $sql;
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
    }
+   
 
    function save($array){
         if(isset($array['id'])){
@@ -151,8 +151,8 @@ function to($url){
     header('location:'.$url);
 }
 
-$Total=new DB('total');
 // 新增資料庫物件-使用者資訊
+$Total=new DB('total');
 $User=new DB('user');
 $News=new DB('news');
 $Que=new DB('que');
@@ -161,9 +161,9 @@ $Que=new DB('que');
 if(!isset($_SESSION['total'])){
     $chkDate=$Total->math('count','id',['date'=>date("Y-m-d")]); // 使用math函式計算(計算方法用count,計算該id的日期為=>今天的日期)
     if($chkDate>=1){ // 確認該變數存在(即為非0) 代表登入過
-        $total=$total->find(['date'=>date("Y-m-d")]); // find撈出資料表的date欄 內容為date("今天")
+        $total=$Total->find(['date'=>date("Y-m-d")]); // find撈出資料表的date欄 內容為date("今天")
         // dd($total); // 確認有撈出資料
-        $total['total']++; // 把'total'值+1
+        $total['total']=$total['total']+1; // 把'total'值+1
         $Total->save($total); // 將物件$Total 存回$total表
         $_SESSION['total']=1; // 當以上執行完 會將$_SESSION的'total'欄設為1
     }else{
@@ -171,8 +171,6 @@ if(!isset($_SESSION['total'])){
         $_SESSION['total']=1; // 並往該日期+1
     }
 }
-
-
 
 
 ?>
