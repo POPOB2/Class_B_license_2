@@ -30,7 +30,7 @@
 </fieldset>
 <fieldset>
     <legend>文章列表</legend>
-    <div></div>
+    <div id="content"></div>
 </fieldset>
 </div>
 
@@ -44,5 +44,15 @@
            放到 "id:header" 的text(type) <=這玩意兒在最上面的span*/
         $("#header").text(type);
         // console.log(type);
+
+
+        // 讓後台可以拿到該分類的所有文章列表
+        getList(type); // click時拿到該type(參數)的文章列表
     })
+    // 拿到文章列表的function
+    function getList(type){
+        $.get("./api/get_list.php",{type},(list)=>{ // 用get取得(該路徑的資料),{用區域變數type給資料},(把type拿到的資料參數給list)給予=>{
+            $("#content").html(list) // 將拿到的文章列表放到(id:content)的div區塊內 // 這段看不太懂??????????????????????????????
+        }) 
+    }
 </script>
